@@ -1,0 +1,46 @@
+;;; init.el --- loads various configuration layers
+;;;
+;;; Commentary:
+;;;
+;;; This is my personal Emacs config, based on things found from
+;;; daviwil, bcmertz, zamansky, and others
+;;;
+;;; Code:
+
+(setq gc-cons-threshold most-positive-fixnum) ; Don't gc on startup
+
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(add-to-list 'load-path (expand-file-name "lisp/languages" user-emacs-directory))
+
+;; debug startup performance / load time using (measure-time(load "custom-module.el"))
+(defmacro measure-time (&rest body)
+  "Measure the time it takes to evaluate BODY."
+  `(let ((time (current-time)))
+     ,@body
+     (message "%.06f" (float-time (time-since time)))))
+
+;; set customize config file location and load it
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(measure-time(load custom-file))
+
+(measure-time(load "custom-packaging.el"))        ;; repositories and package management
+(measure-time(load "custom-funcs.el"))	          ;; custom functions used throughout our configuration
+
+(if (equal (getenv "SESSION") "emacs")	          ;; see if SESSION env var is emacs
+    (measure-time(load "custom-exwm-config.el"))) ;; emacs as window manager
+
+(measure-time(load "custom-general.el"))          ;; general configuration
+(measure-time(load "custom-styling.el"))	  ;; appearance
+(measure-time(load "custom-navigation.el"))	  ;; navigating projects and code
+(measure-time(load "custom-editing.el"))	  ;; efficient text editing
+(measure-time(load "custom-email.el"))		  ;; email - mu4e
+(measure-time(load "custom-lsp.el"))              ;; language server protocol
+(measure-time(load "custom-git.el"))	          ;; version control
+
+;; languages
+(measure-time(load "custom-org.el"))
+
+(setq gc-cons-threshold 800000)
+(add-hook 'focus-out-hook 'garbage-collect)
+
+;;; init.el ends here
