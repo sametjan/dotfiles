@@ -1,1 +1,1 @@
-("~/Development/sametjan/dotfiles/" "~/Development/cemkeylan/mu-wizard/")
+("~/Development/sametjan/dotfiles/" "/opt/homebrew/" "~/Development/cemkeylan/mu-wizard/")

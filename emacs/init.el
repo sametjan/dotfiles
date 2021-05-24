@@ -34,6 +34,7 @@
 (measure-time(load "custom-navigation.el"))	  ;; navigating projects and code
 (measure-time(load "custom-editing.el"))	  ;; efficient text editing
 (measure-time(load "custom-email.el"))		  ;; email - mu4e
+(measure-time(load "custom-pass.el"))             ;; password management
 (measure-time(load "custom-lsp.el"))              ;; language server protocol
 (measure-time(load "custom-git.el"))	          ;; version control
 
