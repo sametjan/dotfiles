@@ -31,14 +31,18 @@
 
 (measure-time(load "custom-general.el"))          ;; general configuration
 (measure-time(load "custom-styling.el"))	  ;; appearance
+(measure-time(load "custom-autocomplete.el"))     ;; company autocompletion & snippets
 (measure-time(load "custom-navigation.el"))	  ;; navigating projects and code
 (measure-time(load "custom-editing.el"))	  ;; efficient text editing
+(measure-time(load "custom-windowing.el"))        ;; buffer management
 (measure-time(load "custom-email.el"))		  ;; email - mu4e
 (measure-time(load "custom-pass.el"))             ;; password management
 (measure-time(load "custom-lsp.el"))              ;; language server protocol
 (measure-time(load "custom-git.el"))	          ;; version control
 
 ;; languages
+(measure-time(load "custom-txt.el"))
+(measure-time(load "custom-js.el"))
 (measure-time(load "custom-org.el"))
 
 (setq gc-cons-threshold 800000)
