@@ -47,9 +47,12 @@
 (measure-time(load "custom-txt.el"))
 (measure-time(load "custom-js.el"))
 (measure-time(load "custom-typescript.el"))
+(measure-time(load "custom-markdown.el"))
+(measure-time(load "custom-css.el"))
+(measure-time(load "custom-bash.el"))
 (measure-time(load "custom-org.el"))
 
 (setq gc-cons-threshold 800000)
-(add-hook 'after-focus-change-function 'garbage-collect)
+(add-hook 'focus-out-hook 'garbage-collect)
 
 ;;; init.el ends here

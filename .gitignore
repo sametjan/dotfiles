@@ -1,8 +1,8 @@
 .DS_Store
 emacs/straight
 emacs/auto-save-list
-/emacs/projectile-bookmarks.eld
 emacs/places
 emacs/recentf
 emacs/save-perspective
-/emacs/forge-database.sqlite
+emacs/forge-database.sqlite
+emacs/projectile-bookmarks.eld
