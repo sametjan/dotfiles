@@ -50,6 +50,6 @@
 (measure-time(load "custom-org.el"))
 
 (setq gc-cons-threshold 800000)
-(add-hook 'focus-out-hook 'garbage-collect)
+(add-hook 'after-focus-change-function 'garbage-collect)
 
 ;;; init.el ends here
