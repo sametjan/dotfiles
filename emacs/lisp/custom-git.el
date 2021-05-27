@@ -24,7 +24,11 @@
 (use-package forge
   :defer t
   :straight t
-  :after magit)
+  :after magit
+  :init (push '("github.prod.hulu.com" "github.prod.hulu.com/api/v3"
+                "github.prod.hulu.com" forge-github-repository)
+              forge-alist)
+  )
 
 (use-package git-link
   :defer t

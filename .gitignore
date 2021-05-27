@@ -6,3 +6,5 @@ emacs/recentf
 emacs/save-perspective
 emacs/forge-database.sqlite
 emacs/projectile-bookmarks.eld
+emacs/.cache
+emacs/.lsp-session*
