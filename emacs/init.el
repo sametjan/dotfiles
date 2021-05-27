@@ -42,6 +42,7 @@
 (measure-time(load "custom-git.el"))	          ;; version control
 (measure-time(load "custom-pdf.el"))	          ;; pdf viewing/editing
 (measure-time(load "custom-compile.el"))          ;; compilation
+(measure-time(load "custom-chat.el"))             ;; irc
 
 ;; languages
 (measure-time(load "custom-txt.el"))

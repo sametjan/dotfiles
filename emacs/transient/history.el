@@ -2,6 +2,6 @@
  (magit-dispatch nil)
  (magit-gitignore nil)
  (magit-pull nil)
- (magit-revert
-  ("--edit"))
- (magit-run nil))
+ (magit-push nil)
+ (magit-run nil)
+ (magit-worktree nil))

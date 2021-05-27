@@ -2,3 +2,7 @@
 [user]
 	name = Steven Ametjan
 	email = steve@hittingthebottle.com
+[github]
+	user = sametjan
+[init]
+	defaultBranch = main
