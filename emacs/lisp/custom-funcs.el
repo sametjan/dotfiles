@@ -264,5 +264,10 @@ selects backward.)"
         (right-word)))
     (mark-word arg allow-extend)))
 
-
+(defun sa/fetch-password (&rest keys)
+  "Get password for server from `auth-source'."
+  (let ((result (apply #'auth-source-search keys)))
+    (if result
+        (funcall (plist-get (car result) :secret))
+        nil)))
 ;;; custom-funcs.el ends here

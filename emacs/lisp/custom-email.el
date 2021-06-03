@@ -13,6 +13,7 @@
   "Utility function to configure mu4e."
   (use-package mu4e
     :load-path "/opt/homebrew/share/emacs/site-lisp/mu/mu4e"	;; requires moving /usr/share/emacs/site-lisp/mu4e
+    :bind ("C-c e" . mu4e)
     )
 
   (use-package mu4e-config
