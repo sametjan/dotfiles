@@ -1,0 +1,41 @@
+#!/usr/bin/env sh
+#
+# Setup pass store and gpg keys
+
+# passwords and keys from github
+if [ ! -d "$HOME/.password-store/" ]; then
+    git clone git@github.com:sametjan/passwords.git ~/.password-store || exit 1
+fi
+
+id="Steven Ametjan"
+
+# move to password store to get key
+cd ~/.password-store
+
+# add public keys
+if ! gpg --list-public-keys $id %>/dev/null; then
+    gpg --import public.key
+else
+    echo "already have $id public key, skipping"
+fi
+
+# add private key
+#
+# decrypt private key
+echo "Enter symmetric password to decrypt the backup private key"
+gpg --decrypt private.key.gpg > private.key
+# import private key
+if ! gpg --list-secret-keys $id &>/dev/null; then
+    echo "Enter gpg key password to import secret key"
+    gpg --allow-secret-key-import --import private.key
+else
+    echo "already have $id private key, skipping"
+fi
+
+# remove unencrypted private key from passwords dir
+rm ~/.password-store/private.key
+
+
+# setup gpg trust db
+rm ~/.gnupg/trustdb.gpg
+gpg --import-ownertrust sa-ownertrust-gpg.txt
