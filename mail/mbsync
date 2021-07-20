@@ -1,0 +1,82 @@
+# HTB Email
+#
+# Remote
+IMAPStore htb-remote
+Host imap.dreamhost.com
+Port 993
+User steve@hittingthebottle.com
+PassCmd "security find-internet-password -s imap.dreamhost.com -w"
+SSLType IMAPS
+CertificateFile /etc/ssl/cert.pem
+
+# Local
+MaildirStore htb-local
+Subfolders Verbatim
+Path ~/.local/share/mail/htb/
+Inbox ~/.local/share/mail/htb/INBOX
+Flatten .
+
+Channel HTB
+Expunge Both
+Far :htb-remote:
+Near :htb-local:
+Patterns *
+Create Both
+SyncState *
+MaxMessages 0
+ExpireUnread no
+# End HTB Email
+
+# Gmail
+#
+# Remote
+IMAPStore gmail-remote
+Host imap.gmail.com
+Port 993
+User merlin903@gmail.com
+PassCmd "security find-internet-password -s imap.dreamhost.com -w"
+SSLType IMAPS
+CertificateFile /etc/ssl/cert.pem
+
+# Local
+MaildirStore gmail-local
+Subfolders Verbatim
+Path ~/.local/share/mail/gmail/
+Inbox ~/.local/share/mail/gmail/INBOX
+Flatten .
+
+Channel gmail
+Expunge Both
+Far :gmail-remote:
+Near :gmail-local:
+Patterns * !"[Gmail]/All Mail"
+Create Both
+SyncState *
+MaxMessages 0
+ExpireUnread no
+# End Gmail
+
+# IMAPStore htb-remote
+# Host imap.dreamhost.com
+# Port 993
+# User steve@hittingthebottle.com
+# PassCmd "pass show muw/steve@hittingthebottle.com"
+# SSLType IMAPS
+# CertificateFile /etc/ssl/cert.pem
+
+# MaildirStore htb-local
+# Subfolders Verbatim
+# Path ~/.local/share/mail/htb/
+# Inbox ~/.local/share/mail/htb/INBOX
+# Flatten .
+
+# Channel htb
+# Expunge Both
+# Far  :htb-remote:
+# Near :htb-local:
+# Patterns * !"[Gmail]/All Mail"
+# Create Both
+# SyncState *
+# MaxMessages 0
+# ExpireUnread no
+# # End profile
