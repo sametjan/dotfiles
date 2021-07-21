@@ -26,7 +26,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-solarized-dark)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -238,3 +238,31 @@ should be continued."
   :config
   (global-set-key (kbd "M-[") #'centaur-tabs-backward)
   (global-set-key (kbd "M-]") #'centaur-tabs-forward))
+
+(use-package! mu4e
+  :defer
+  :config
+  (set-email-account! "htb"
+                      '((mu4e-sent-folder . "/htb/Sent")
+                        (mu4e-drafts-folder . "/htb/Drafts")
+                        (mu4e-trash-folder . "/htb/Trash")
+                        (mu4e-refile-folder . "/htb/Archive")
+                        (smtpmail-smtp-user . "steve@hittingthebottle.com")
+                        (user-email-address . "steve@hittingthebottle.com"))
+                      t))
+
+(use-package! mu4e-views
+  :after mu4e
+  :defer nil
+  :bind (:map mu4e-headers-mode-map
+         ("v" . mu4e-views-mu4e-select-view-msg-method)
+         ("M-n" . mu4e-views-cursor-msg-view-window-down)
+         ("M-p" . mu4e-views-cursor-msg-view-window-up)
+         ("f" . mu4e-views-toggle-auto-view-selected-messages)
+         ("i" . mu4e-views-mu4e-view-as-nonblocked-html))
+  :config
+  (setq mu4e-views-completion-method 'ivy
+        mu4e-views-default-view-method "html"
+        mu4e-views-next-previous-message-behavior 'stick-to-current-window
+        mu4e-views-auto-view-selected-messages nil)
+  (mu4e-views-mu4e-use-view-msg-method "html"))

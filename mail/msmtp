@@ -1,0 +1,14 @@
+defaults
+auth on
+tls on
+tls_trust_file /etc/ssl/cert.pem
+logfile /Users/sametjan/.cache/msmtp/msmtp.log
+
+# HTB SMTP
+account htb
+host smtp.dreamhost.com
+port 587
+from steve@hittingthebottle.com
+user steve@hittingthebottle.com
+passwordeval "security find-internet-password -s imap.dreamhost.com -w"
+# End HTB

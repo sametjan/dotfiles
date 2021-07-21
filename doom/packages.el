@@ -50,3 +50,7 @@
 ;(unpin! t)
 
 (package! org-super-agenda)
+(package! mu4e-views
+  :recipe (:host github
+           :repo "lordpretzel/mu4e-views")
+  :pin "33fa9f584034978006108a4498566e933493f852")
