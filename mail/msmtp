@@ -12,15 +12,3 @@ from steve@hittingthebottle.com
 user steve@hittingthebottle.com
 passwordeval "security find-internet-password -s imap.dreamhost.com -w"
 # End HTB
-<<<<<<< HEAD
-=======
-#
-# Gmail SMTP
-account gmail
-host smtp.gmail.com
-port 587
-from merlin903@gmail.com
-user merlin903@gmail.com
-passwordeval "security find-internet-password -s imap.gmail.com -w"
-# End Gmail
->>>>>>> d5cd1ff5f7ec872809efe9ea8f924f72ef681fa1
