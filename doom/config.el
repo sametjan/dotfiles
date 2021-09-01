@@ -72,16 +72,47 @@
 
 (use-package! mu4e-views
   :after mu4e
-  :init (
-  (map! :localleader
-              :mu4e-headers-mode-map
-              :desc "Select viewing method" "v" #'mu4e-views-mu4e-select-view-msg-method
-              :desc "Toggle auto view selected messages" "f" #'mu4e-views-toggle-auto-view-selected-messages
-              :desc "View as nonblocked html" "i" #'mu4e-views-mu4e-view-as-nonblocked-html)
-  (map! :mu4e-headers-mode-map
-        :desc "Scroll email view down" "M-n" #'mu4e-views-cursor-msg-view-window-down
-        :desc "Scroll email view up" "M-p" #'mu4e-views-cursor-msg-view-window-up)
+  :init
   (setq mu4e-views-completion-method 'vertico
-        mu4e-views-default-view-method 'html
-        mu4e-views-next-previous-message-behaviour 'stick-to-current-window
-        mu4e-views-auto-view-selected-message t)))
+              mu4e-views-default-view-method 'html
+              mu4e-views-next-previous-message-behavior 'stick-to-current-window
+              mu4e-views-auto-view-selected-message t)
+  (map! :localleader
+        :map mu4e-headers-mode-map
+        :desc "Select viewing method" "v" #'mu4e-views-mu4e-select-view-msg-method
+        :desc "Toggle auto view selected messages" "f" #'mu4e-views-toggle-auto-view-selected-message
+        :desc "View as nonblocked html" "i" #'mu4e-views-mu4e-view-as-nonblocked-html)
+  (map! :map mu4e-headers-mode-map
+        :desc "Scroll email view down" "M-n" #'mu4e-views-cursor-msg-view-window-down
+        :desc "Scroll email view up" "M-p" #'mu4e-views-cursor-msg-view-window-up))
+
+(defun org-refile-to-datetree (&optional file)
+  "Refile a subtree to a datetree corresponding to it's timestamp.
+
+The current time is used if the entry has no timestamp. if FILE
+is nil, refile in the current file."
+  (interactive "f")
+  (let* ((datetree-date (or (org-entry-get nil "TIMESTAMP" t)
+                            (org-read-date t nil "now")))
+         (date (org-date-to-gregorian datetree-date))
+         )
+    (with-current-buffer (current-buffer)
+      (save-excursion
+        (org-cut-subtree)
+        (if file (find-file file))
+        (org-datetree-find-iso-week-create date)
+        (org-narrow-to-subtree)
+        (show-subtree)
+        (org-end-of-subtree t)
+        (newline)
+        (goto-char (point-max))
+        (org-paste-subtree 4)
+        (widen)
+        ))
+    )
+  )
+
+(map! :map org-mode-map
+      :localleader
+      (:prefix ("r" . "refile")
+       "d" #'org-refile-to-datetree))
