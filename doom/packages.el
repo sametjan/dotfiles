@@ -51,3 +51,4 @@
 
 (package! mu4e-views
   :recipe (:host github :repo "lordpretzel/mu4e-views"))
+(package! lsp-tailwindcss :recipe (:host github :repo "merrickluo/lsp-tailwindcss"))

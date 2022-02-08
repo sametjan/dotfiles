@@ -116,3 +116,8 @@ is nil, refile in the current file."
       :localleader
       (:prefix ("r" . "refile")
        "d" #'org-refile-to-datetree))
+
+;; Disable LSP Formatting
+(setq +format-with-lsp nil)
+
+(use-package! lsp-tailwindcss)
