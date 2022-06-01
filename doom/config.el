@@ -127,3 +127,5 @@ is nil, refile in the current file."
 (setq +format-with-lsp nil)
 
 (use-package! lsp-tailwindcss)
+(use-package! prisma-mode)
+(setq-hook! 'web-mode +format-with prettier)
